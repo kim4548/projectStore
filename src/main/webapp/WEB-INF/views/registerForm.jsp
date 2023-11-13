@@ -34,10 +34,10 @@
     <h1>회원가입</h1>
 
     <form:form modelAttribute="user">
-        <input type="text" name="id" placeholder="아이디"  oninput="checkId(this.value)">
+        <input type="text" class="id1" name="id" placeholder="아이디">
         <span id="input_re1">사용가능한 아이디 입니다</span>
         <span id="input_re2">아이디가 이미 존재합니다</span>
-        <button type="button" onclick="checkDup()">중복 확인</button>
+
 
 
         <input type="password" name="pwd" placeholder="비밀번호" >
@@ -46,7 +46,7 @@
         <input type="text" name="name" placeholder="이름" >
         <input type="text" name="phoneNum" placeholder="연락처" >
         <input type="text" name="ssn" placeholder="생년월일(123456)" >
-        <button formaction="<c:url value="/save"/>">가입하기</button>
+        <button formaction="<c:url value='/save'/>">가입하기</button>
 
 
     </form:form>
@@ -78,40 +78,57 @@
 
 
 
-    function checkId(id) {
-        $.ajax({
-            type: "POST",
-            url: "/register",
-            contentType: "application/json",
-            data: JSON.stringify({ id: id }),
-            success: function (data) {
-                if (data.exists) {
-                    $("#input_re1").hide();
-                    $("#input_re2").show();
-                } else {
-                    $("#input_re1").show();
-                    $("#input_re2").hide();
-                }
-            },
-            error: function (error) {
-                console.error('ERROR:', error);
+$('.id1').on("property change keyup paste input",function  checkId(){
+
+    // console.log("keyup 테스트");
+    var id1= $('.id1').val();
+    var data = {id:id1}
+
+    $.ajax({
+        type:"post",
+        url:"/shop/checkId" ,
+       data:data,
+        success:function (result) {
+            console.log("성공여부 " + result);
+            if (result != "success") {
+                $('#input_re1').hide();
+                $('#input_re2').show();
+            } else {
+                $('#input_re2').hide();
+                $('#input_re1').show();
             }
-        });
-    }
+        }
+
+    })
 
 
-    function checkDup() {
-        var id =$("input[name='id']").val();
-        checkId(id);
+});
 
-        setTimeout(function () {
-            if ($("#input_re1").is(":visible")) {
-                alert("사용 가능한 아이디 입니다.")
-            } else if ($("#input_re2").is(":visible")) {
-                alert("아이디가 이미 존재 합니다.")
-            }
-        }, 500);
-    }
+    // function checkId(id) {
+    //     var memberId = $('.id').val();			// .id_input에 입력되는 값
+    //     var data = {id : id}
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/shop/save",
+    //         contentType: "application/json",
+    //         data: JSON.stringify(data),
+    //         success: function (data) {
+    //             if (data.equals(memberId)) {
+    //                 $("#input_re1").hide();
+    //                 $("#input_re2").show();
+    //             } else {
+    //                 $("#input_re1").show();
+    //                 $("#input_re2").hide();
+    //             }
+    //         },
+    //         error: function (error) {
+    //             console.error('ERROR:', error);
+    //         }
+    //     });
+    // }
+    //
+    //
+
 
 
 

@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 
-<c:set var="listCnt" value="listCnt += listCnt[i]" />
+
 <%--<c:set var="loginId" value="${pageContext.request.getSession(false)==null ?   '/'  : pageContext.request.session.getAttribute(id) }"/>--%>
 <%--<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>--%>
 <%--<c:set var="loginOut" value="${loginId=='' ? 'login' : 'logout'}"/>--%>
@@ -67,7 +67,7 @@
 
 
          <button formaction="<c:url value='/order/order'/> ">주문하기</button>
-         <button formaction="/ceramics">계속 쇼핑하기</button>
+         <button formaction="<c:url value='/ceramics'/>">계속 쇼핑하기</button>
 
 
      </form>

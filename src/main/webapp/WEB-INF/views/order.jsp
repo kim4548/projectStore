@@ -29,9 +29,13 @@
     <input name="name" placeholder="이름">
     <input name="phoneNum" placeholder="연락처">
     <input name="email" placeholder="이메일 주소 aaaa@aaa.com">
+    <button>주소 찾기</button>
+    <input name="address" placeholder="주소">
+    <input name="detailAddress" placeholder="상세 주소">
+
 
     <h3>배송정보</h3>
-    <input type="checkbox" ><label>주문자 정보와 동일</label>
+    <input type="checkbox" name="Dupli" onclick="duplic(this)" ><label>주문자 정보와 동일</label>
     <input name="name" placeholder="수령인">
     <input name="phoneNum" placeholder="연락처">
     <input name="addressNum" placeholder="우편번호">
@@ -47,16 +51,22 @@
         <option>직접입력</option>
     </select>
 </form>
-
-
 <div>
 
-
-
-
-
 </div>
+<script>
+    function duplic(){
+        // 이름과 연락처 정보가 동일하게 복사
+      
 
+
+
+    }
+
+
+
+
+</script>
 
 
 

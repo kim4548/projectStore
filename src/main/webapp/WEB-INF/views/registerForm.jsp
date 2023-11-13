@@ -101,7 +101,7 @@
 
 
     function checkDup() {
-        var id = $("input[name='id']").val();
+        var id =$("input[name='id']").val();
         checkId(id);
 
         setTimeout(function () {

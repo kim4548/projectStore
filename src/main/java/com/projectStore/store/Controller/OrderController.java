@@ -30,11 +30,9 @@ public class OrderController {
     }
     private boolean loginCheck(HttpSession session) {
         // 로그인 했는지 알려면 세션 id 있나 없나?
-      if(session.getAttribute("id") == null)
-          return true;
 
-        return  false;
+        return session.getAttribute("id")== null ? true : false;
+
+
     }
-
-
 }

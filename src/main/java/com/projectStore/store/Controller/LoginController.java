@@ -5,6 +5,7 @@ import com.projectStore.store.dao.UserDao;
 import com.projectStore.store.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +45,6 @@ public class LoginController {
         System.out.println("userDao---->"+userDao.selectUser(id) +"user--->" + user);
 
 
-
             if (!loginCheck(id, pwd)) {
 
                 String msg = URLEncoder.encode("id또는 pwd 가 일치하지 않습니다." ,"utf-8");
@@ -53,13 +53,14 @@ public class LoginController {
             }
 
 
-
               HttpSession session=  request.getSession();
                 session.setAttribute("id",id);
 
             if (rememberId) {
                 Cookie cookie = new Cookie("id", id);
                 response.addCookie(cookie);
+
+
             } else {
                 Cookie cookie = new Cookie("id", id);
                 cookie.setMaxAge(0);
@@ -70,6 +71,24 @@ public class LoginController {
             return "redirect:"+toURL;
 
         }
+
+
+
+        //관리자 컨트롤러
+        @RequestMapping("/management")
+        public String manager(String id ,String pwd) throws Exception{
+
+           if( managerCheck(id,pwd)){
+               return "/management";
+
+           }
+
+        return "redirect:/";
+        }
+
+
+
+
 
     private boolean loginCheck(String id , String pwd) throws Exception {
         // DB 에 있는 아이디로 로그인을 할수있도록
@@ -82,4 +101,18 @@ public class LoginController {
         return false;
 
     }
+    private boolean managerCheck(String id , String pwd) throws Exception{
+        user = userDao.selectUser(id);
+        if(user.getId().equals("aaabbb")){
+            if (user.getPwd().equals(pwd)){
+                return true;
+            }
+        }
+        return false;
+
+
+
+    }
+
+
 }

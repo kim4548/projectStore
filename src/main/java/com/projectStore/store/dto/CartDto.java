@@ -1,28 +1,38 @@
 package com.projectStore.store.dto;
 
+import java.util.List;
 import java.util.Objects;
 
+
+
+// 장바구니 dto
 public class CartDto {
-  private   String memberId;
-  private   int cartId;
+
+    // user.getId()
+  private   String id;
+
+  // cart Id
+
+
+  //상품 id
   private   int sellId;
+
+  //상품 수량
   private   int sellCount;
 
+  //상품 이름
   private   String sellName;
-  private   int sellPrice;
-  private   double sellDiscount;
 
-  private   int salePrice;
+  //상품 가격
+  private   int sellPrice;
+
+  //토탈 가격
   private   int totalPrice;
 
+  private int cartId ;
 
-    public String getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
-    }
+  //상품 이미지
+    private List<SellImageDto> sellImageDTOList;
 
     public int getCartId() {
         return cartId;
@@ -31,6 +41,24 @@ public class CartDto {
     public void setCartId(int cartId) {
         this.cartId = cartId;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<SellImageDto> getSellImageDTOList() {
+        return sellImageDTOList;
+    }
+
+    public void setSellImageDTOList(List<SellImageDto> sellImageDTOList) {
+        this.sellImageDTOList = sellImageDTOList;
+    }
+
+
 
     public int getSellId() {
         return sellId;
@@ -64,21 +92,8 @@ public class CartDto {
         this.sellPrice = sellPrice;
     }
 
-    public double getSellDiscount() {
-        return sellDiscount;
-    }
 
-    public void setSellDiscount(double sellDiscount) {
-        this.sellDiscount = sellDiscount;
-    }
 
-    public int getSalePrice() {
-        return salePrice;
-    }
-
-    public void setSalePrice(int salePrice) {
-        this.salePrice = salePrice;
-    }
 
     public int getTotalPrice() {
         return totalPrice;
@@ -90,14 +105,14 @@ public class CartDto {
 
 
     public CartDto(){}
-    public CartDto(String memberId, int cartId, int sellId, int sellCount, String sellName, int sellPrice, double sellDiscount) {
-        this.memberId = memberId;
-        this.cartId = cartId;
+    public CartDto(String id, int sellId, int sellCount, String sellName, int sellPrice ,int totalPrice ) {
+        this.id = id;
         this.sellId = sellId;
         this.sellCount = sellCount;
         this.sellName = sellName;
         this.sellPrice = sellPrice;
-        this.sellDiscount = sellDiscount;
+        this.totalPrice=this.sellCount*this.sellPrice;
+
     }
 
     @Override
@@ -105,25 +120,22 @@ public class CartDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CartDto cartDto = (CartDto) o;
-        return cartId == cartDto.cartId && sellId == cartDto.sellId && sellCount == cartDto.sellCount && sellPrice == cartDto.sellPrice && Double.compare(sellDiscount, cartDto.sellDiscount) == 0 && salePrice == cartDto.salePrice && totalPrice == cartDto.totalPrice && Objects.equals(memberId, cartDto.memberId) && Objects.equals(sellName, cartDto.sellName);
+        return  sellId == cartDto.sellId && sellCount == cartDto.sellCount && sellPrice == cartDto.sellPrice && totalPrice == cartDto.totalPrice && Objects.equals(id, cartDto.id) && Objects.equals(sellName, cartDto.sellName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(memberId, cartId, sellId, sellCount, sellName, sellPrice, sellDiscount, salePrice, totalPrice);
+        return Objects.hash(id,  sellId, sellCount, sellName, sellPrice,  totalPrice);
     }
 
     @Override
     public String toString() {
         return "CartDto{" +
-                "memberId='" + memberId + '\'' +
-                ", cartId=" + cartId +
+                "id='" + id + '\'' +
                 ", sellId=" + sellId +
                 ", sellCount=" + sellCount +
                 ", sellName='" + sellName + '\'' +
                 ", sellPrice=" + sellPrice +
-                ", sellDiscount=" + sellDiscount +
-                ", salePrice=" + salePrice +
                 ", totalPrice=" + totalPrice +
                 '}';
     }

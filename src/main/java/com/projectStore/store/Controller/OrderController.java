@@ -3,11 +3,14 @@ package com.projectStore.store.Controller;
 
 import org.springframework.stereotype.Controller;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
+
+//주문하기 /// 결제하기
 
 @Controller
 @RequestMapping("/order")
@@ -16,13 +19,11 @@ public class OrderController {
 
     @RequestMapping("/order")
     public String order(HttpSession session, HttpServletRequest request) {
-        System.out.println("요청받은 곳" +request.getRequestURI());
+
 
         if (loginCheck(session)) {
-
             return "redirect:/login/login";
         }
-
 
         return "order";
 
@@ -35,4 +36,18 @@ public class OrderController {
 
 
     }
+
+
+
+    //결제창
+    @PostMapping("/payment")
+    public String payment(){
+        //결제하기
+
+
+
+
+        return "payment";
+    }
+
 }

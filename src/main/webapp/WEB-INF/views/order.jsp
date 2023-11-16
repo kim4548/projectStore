@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title></title>
@@ -50,6 +51,26 @@
         <option>경비실에 보관 부탁드립니다</option>
         <option>직접입력</option>
     </select>
+
+    <h3>결제 수단</h3>
+    <select>
+        <option>신용카드</option>
+        <option>실시간 계좌이체</option>
+        <option>가상계좌</option>
+        <option>무통장입금</option>
+        <option>휴대폰</option>
+        <option>카카오페이</option>
+
+
+        <input name="무통장 입금" placeholder="00은행 0000-000-000000홍길동" >
+        <input name="입금자 명" placeholder="입금자명(미입력시 주문자명)" >
+
+        <input type="checkbox" name="현금영수증 신청" ><labal>현금 영수증 신청</labal>
+    </select>
+
+
+
+    <button class="orderCompli" formaction="<c:url value='/payment'/>" formmethod="post">결제하기</button>
 </form>
 <div>
 

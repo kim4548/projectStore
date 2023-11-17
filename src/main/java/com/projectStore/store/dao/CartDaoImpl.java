@@ -83,7 +83,7 @@ public class CartDaoImpl implements CartDao {
 
     @Override
     public CartDto selectCart(CartDto cartDto) throws Exception {
-        String sql = "SELECT FROM springbasic.cartDto WHERE id = ? ";
+        String sql = "SELECT FROM springbasic.cart WHERE id = ? ";
 
         try
                 (Connection conn = ds.getConnection();

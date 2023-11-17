@@ -52,8 +52,11 @@ public class LoginController {
 
             }
 
+        if(managerCheck(id,pwd)) {
+        return "management";
+        }
 
-              HttpSession session=  request.getSession();
+            HttpSession session=  request.getSession();
                 session.setAttribute("id",id);
 
             if (rememberId) {
@@ -71,24 +74,6 @@ public class LoginController {
             return "redirect:"+toURL;
 
         }
-
-
-
-        //관리자 컨트롤러
-        @RequestMapping("/management")
-        public String manager(String id ,String pwd) throws Exception{
-
-           if( managerCheck(id,pwd)){
-               return "/management";
-
-           }
-
-        return "redirect:/";
-        }
-
-
-
-
 
     private boolean loginCheck(String id , String pwd) throws Exception {
         // DB 에 있는 아이디로 로그인을 할수있도록

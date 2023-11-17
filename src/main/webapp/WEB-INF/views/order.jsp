@@ -27,9 +27,9 @@
 
 <form name="orderInformation">
     <h3>주문자 정보</h3>
-    <input name="name" placeholder="이름">
-    <input name="phoneNum" placeholder="연락처">
-    <input name="email" placeholder="이메일 주소 aaaa@aaa.com">
+    <input name="name" placeholder="이름" value="${user.id}">
+    <input name="phoneNum" placeholder="연락처" value="${user.phoneNum}">
+    <input name="email" placeholder="이메일 주소 aaaa@aaa.com" value="${user.email}">
     <button>주소 찾기</button>
     <input name="address" placeholder="주소">
     <input name="detailAddress" placeholder="상세 주소">

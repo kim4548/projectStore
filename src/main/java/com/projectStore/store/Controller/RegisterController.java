@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -39,10 +38,7 @@ public class RegisterController {
         } else {
             return "redirect:/register";
         }
-
     }
-
-
     @PostMapping("/checkId")
     @ResponseBody
     public String checkId(String id) throws  Exception{
@@ -52,9 +48,11 @@ public class RegisterController {
         System.out.println("id = " + id);
         int result =userDao.idCheck(id);
   if(result !=0 ){
+      System.out.println("fail");
       return "fail";
 
   }else {
+      System.out.println("success");
       return "success";
   }
         }

@@ -27,10 +27,10 @@
 
 <a href="" >카카오로 시작하기</a>
 <a href="" >네이버로 시작하기 </a>
-<form action="<c:url value='/login/management' />"  method="post" onsubmit="loginCheck(this)" >
+<form action="<c:url value='/login/login' />"  method="post" onsubmit="loginCheck(this)" >
     <input type="text" name="id" value="${cookie.id.value}" placeholder="ID를 입력하세요">
     <input type="password" name="pwd" placeholder="PWD를 입력하세요">
-    <input type="" name="toURL">
+    <input type="text" name="toURL">
     <input type="checkbox" name="rememberId" value="on" ${empty cookie.id.value=="" ? "":"check"} >로그인 상태 유지
     <button>로그인</button>
     <button formaction="<c:url value='/register' />" formmethod="post">회원가입</button>

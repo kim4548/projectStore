@@ -19,9 +19,12 @@ public class CartController {
    CartDao cartDao;
 
 @RequestMapping ("/cart")
-public String Cart(@Valid CartDto cartDto) throws Exception {
+public String Cart(@Valid CartDto cartDto , Model m) throws Exception {
     System.out.println("Cart Controller is called");
-    System.out.println(cartDao.getCart("kdst6156"));
+        m.addAttribute("selcet",cartDao.selectCart("kdst6156"));
+    System.out.println("m===>       " + m);
+
+
 
 
 

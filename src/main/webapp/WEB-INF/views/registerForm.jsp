@@ -18,35 +18,101 @@
     }
 
 
+
+    /* styles.css 파일 내용 */
+
+    /* 전체 페이지 스타일 */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+
+    .container {
+        width: 64%;
+        height: 83%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    #menu {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+    }
+
+    #menu ul.menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    #menu ul.menu li {
+        display: inline;
+        margin-right: 10px;
+    }
+
+    #menu ul.menu li a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+
+    /* Form 스타일 */
+    #input-field {
+        margin-bottom: 10px;
+        padding: 8px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .message {
+        display: none;
+    }
+
+    /* 다른 스타일들은 유지하고 위의 부분만 변경 */
+
+
 </style>
 <body>
 
 <div id="menu">
+    <ul class="menu">
     <li><a href="<c:url value='/ceramics'/>">Ceramics</a></li>
     <li><a href="<c:url value='/vase' />">Vase</a></li>
     <li><a href="<c:url value='/about' />">About</a></li>
     <li><a href="<c:url value='/' />">Home</a></li>
     <li><a href="<c:url value='/login/login'/>">Login</a></li>
     <li><a href="<c:url value='/cart'/>">Cart</a></li>
+    </ul>
 </div>
 
-<div id = registerForm>
+<div id ="registerForm" class="container">
     <h1>회원가입</h1>
 
     <form:form modelAttribute="user">
-        <input type="text" class="id1" name="id" placeholder="아이디">
+        <input type="text" class="id1" name="id" placeholder="아이디" id="input-field">
         <span id="input_re1">사용가능한 아이디 입니다</span>
         <span id="input_re2">아이디가 이미 존재합니다</span>
 
 
 
-        <input type="password" name="pwd" placeholder="비밀번호" >
+        <input type="password" name="pwd" placeholder="비밀번호" id="input-field" >
 <%--        <input type="password" name="pwd1" placeholder="비밀번호 확인" >--%>
-        <input type="email" name="email" placeholder="이메일" >
-        <input type="text" name="name" placeholder="이름" >
-        <input type="text" name="phoneNum" placeholder="연락처" >
-        <input type="text" name="ssn" placeholder="생년월일(123456)" >
-        <button formaction="<c:url value='/save'/>">가입하기</button>
+        <input type="email" name="email" placeholder="이메일" id="input-field" >
+        <input type="text" name="name" placeholder="이름" id="input-field">
+        <input type="text" name="phoneNum" placeholder="연락처" id="input-field">
+        <input type="text" name="ssn" placeholder="생년월일(123456)" id="input-field">
+        <button class="submit-btn" formaction="<c:url value='/save'/>">가입하기</button>
 
 
     </form:form>
@@ -103,31 +169,6 @@ $('.id1').on("property change keyup paste input",function  checkId(){
 
 
 });
-
-    // function checkId(id) {
-    //     var memberId = $('.id').val();			// .id_input에 입력되는 값
-    //     var data = {id : id}
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "/shop/save",
-    //         contentType: "application/json",
-    //         data: JSON.stringify(data),
-    //         success: function (data) {
-    //             if (data.equals(memberId)) {
-    //                 $("#input_re1").hide();
-    //                 $("#input_re2").show();
-    //             } else {
-    //                 $("#input_re1").show();
-    //                 $("#input_re2").hide();
-    //             }
-    //         },
-    //         error: function (error) {
-    //             console.error('ERROR:', error);
-    //         }
-    //     });
-    // }
-    //
-    //
 
 
 

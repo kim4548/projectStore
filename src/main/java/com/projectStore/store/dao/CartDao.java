@@ -15,7 +15,7 @@ public interface CartDao {
 
     public List<CartDto> getCart(String id)throws  Exception;
 
-    public CartDto selectCart(CartDto cartDto)throws  Exception;
+    public CartDto selectCart(String id)throws  Exception;
     int count() throws Exception;
 
 

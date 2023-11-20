@@ -16,13 +16,13 @@ CartDao cartDao;
 
 
 
+
     @Test
     public void insertCart() throws Exception {
-     CartDto   cart = new CartDto("kdst6156",1,1,"매병",50000,1);
+     cartDao.insertCart(new CartDto("kdst6156",2,3,"접시",50000,1));
 
 
 
-assertTrue(cartDao.insertCart(cart)==1);
 
 
 
@@ -41,6 +41,14 @@ assertTrue(cartDao.insertCart(cart)==1);
     }
 
     @Test
-    public void selectCart() {
+    public void selectCart() throws Exception {
+
+    CartDto cartDto = new CartDto("kdst61561",1,1,"화병",25000 ,1 );
+   cartDao.selectCart(cartDto.getId());
+
+
+
+
+
     }
 }

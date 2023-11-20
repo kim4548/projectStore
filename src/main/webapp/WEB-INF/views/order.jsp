@@ -10,40 +10,158 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title></title>
+    <title>order</title>
+    <style>
+
+        /* styles.css 파일 내용 */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid black;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            gap: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: calc(100% - 10px);
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .orderInfo{
+            display: flex;
+            justify-items: center;
+            flex-direction: column;
+            align-content: space-around;
+            width: 500px;
+            height: 247px;
+            padding-top: 10px;
+        }
+        .orderInfo1{
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+            height: 247px;
+
+        }
+        .orderInfo2{
+
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            width: 500px;
+            height: 120px;
+            padding-top: 39px;
+
+        }
+        .payment-info{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+<div class="container">
 
+    <div class="totalShoppingList">
 <table id="totalShoppingList">
+
+    <h3>주문 상품 정보</h3>
     <th>
         <tr>
-    <td>총주문 상품 개수</td>
+    <td> 주문자 ID : ${Cart.id}</td>
+    </tr>
+        <tr>
+    <td>총 주문 상품 개수 : ${Cart.sellCount}</td>
     </tr>
     <tr>
-        <td>총주문 가격</td>
+        <td>총 주문 가격 : ${Cart.totalPrice}</td>
     </tr>
     </th>
 </table>
 
-<form name="orderInformation">
+    </div>
+<form class="oderInformation">
+
+    <div class="delivery-info">
+
+        <div class="orderInfo">
     <h3>주문자 정보</h3>
-    <input name="name" placeholder="이름" value="${user.id}">
-    <input name="phoneNum" placeholder="연락처" value="${user.phoneNum}">
-    <input name="email" placeholder="이메일 주소 aaaa@aaa.com" value="${user.email}">
+    <input name="name" placeholder="이름" value="${User.id}">
+    <input name="phoneNum" placeholder="연락처" value="${User.phoneNum}">
+    <input name="email" placeholder="이메일 주소 aaaa@aaa.com" value="${User.email}">
+            <input name="addressNum" placeholder="우편번호">
     <button>주소 찾기</button>
     <input name="address" placeholder="주소">
     <input name="detailAddress" placeholder="상세 주소">
+        </div>
 
-
+        <div class="orderInfo1">
     <h3>배송정보</h3>
-    <input type="checkbox" name="Dupli" onclick="duplic(this)" ><label>주문자 정보와 동일</label>
-    <input name="name" placeholder="수령인">
-    <input name="phoneNum" placeholder="연락처">
-    <input name="addressNum" placeholder="우편번호">
+            <label>주문자 정보와 동일</label>
+    <input type="checkbox" id="Dupli" onclick="Dupli(this)" >
+    <input name="receiverName" placeholder="수령인 이름" >
+    <input name="receiverPhoneNum" placeholder="연락처">
+            <input name="receiverEmail" placeholder="이메일 주소 aaaa@aaa.com" >
+    <input name="receiverAddressNum" placeholder="우편번호">
     <button>주소 찾기</button>
-    <input name="address" placeholder="주소">
-    <input name="detailAddress" placeholder="상세 주소">
+    <input name="receiverAddress" placeholder="주소">
+    <input name="receiverDetailAddress" placeholder="상세 주소">
+        </div>
 
+        <div class="orderInfo2">
     <h3>배송 메모</h3>
     <select>
         <option>부재시 연락 부탁드립니다.</option>
@@ -52,48 +170,77 @@
         <option>직접입력</option>
     </select>
 
+        </div>
+    </div>
+</form>
+
+        <div class="payment-info">
     <h3>결제 수단</h3>
-    <select>
+    <select class="payChoice">
         <option>신용카드</option>
-        <option>실시간 계좌이체</option>
+        <option >실시간 계좌이체</option>
         <option>가상계좌</option>
         <option>무통장입금</option>
         <option>휴대폰</option>
         <option>카카오페이</option>
-
-
-        <input name="무통장 입금" placeholder="00은행 0000-000-000000홍길동" >
-        <input name="입금자 명" placeholder="입금자명(미입력시 주문자명)" >
-
-        <input type="checkbox" name="현금영수증 신청" ><labal>현금 영수증 신청</labal>
     </select>
 
+            <div class="goto"  style="display: none;">
+        <input  type="text"  class="goto1" value="홍길은행 123-12344-123456 홍길동">
+            </div>
+        <labal>현금 영수증 신청</labal><input type="checkbox" name="현금영수증 신청" >
+        </div>
 
 
     <button class="orderCompli" formaction="<c:url value='/payment'/>" formmethod="post">결제하기</button>
 </form>
-<div>
-
 </div>
+
 <script>
-    function duplic(){
-        // 이름과 연락처 정보가 동일하게 복사
-      
+   $(document).ready(function () {
+       $('#Dupli').change(function () {
+           if ($(this).is(':checked')) {
+               // 지금 인풋창에 있는 값을 변수에 저장
+               var name = $('input[name="name"]').val();
+               var phoneNum = $('input[name="phoneNum"]').val();
+               var email = $('input[name="email"]').val();
+               var addressNum = $('input[name="addressNum"]').val();
+               var address = $('input[name="address"]').val();
+               var detailAddress = $('input[name="detailAddress"]').val();
 
 
+               // 넘겨주는 곳에
+               $('input[name="receiverName"]').val(name);
+               $('input[name="receiverPhoneNum"]').val(phoneNum);
+               $('input[name="receiverEmail"]').val(email);
+               $('input[name="receiverAddressNum"]').val(addressNum);
+               $('input[name="receiverAddress"]').val(address);
+               $('input[name="receiverDetailAddress"]').val(detailAddress);
 
-    }
+           } else {
+
+               // 클릭이 안되면 빈 문자열
+               $('input[name="receiverName"]').val('');
+               $('input[name="receiverPhoneNum"]').val('');
+               $('input[name="receiverEmail"]').val('');
+               $('input[name="receiverAddressNum"]').val('');
+               $('input[name="receiverAddress"]').val('');
+               $('input[name="receiverDetailAddress"]').val('');
+           }
+       });
+   });
 
 
-
-
+   $(document).ready(function () {
+       $('.payChoice').change(function () {
+           if ($(this).val() === "무통장입금") {
+               $('.goto').show()
+               $('.goto1').prop("readOnly",true)
+           }else {
+               $('.goto').hide()
+           }
+       });
+   })
 </script>
-
-
-
-
-
-
-
 </body>
 </html>

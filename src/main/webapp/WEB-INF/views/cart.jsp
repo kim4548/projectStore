@@ -16,59 +16,134 @@
 <html>
 <head>
     <title>Cart</title>
+<style>
+    /* styles.css 파일 내용 */
+
+    /* 전체 페이지 스타일 */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+
+    .container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+    }
+
+     ul.menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
+    }
+
+
+   ul.menu li {
+        margin-right: 10px;
+    }
+
+  ul.menu li a {
+        color: #1c1919;
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+
+    /* 주문 상세 정보 */
+    .order-details {
+        margin-bottom: 20px;
+    }
+
+    .total-summary {
+        margin-top: 10px;
+    }
+
+    /* 버튼 스타일 */
+    .buttons {
+        text-align: right;
+        margin-top: 20px;
+    }
+
+    .order-btn, .continue-shopping-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .order-btn {
+        background-color: #3498db;
+        color: #fff;
+        margin-right: 10px;
+    }
+
+    .continue-shopping-btn {
+        background-color: #27ae60;
+        color: #fff;
+    }
+
+
+</style>
+
+
 </head>
+
 <body>
-<div id="menu">
+<ul class="menu">
     <li><a href="<c:url value='/ceramics'/>">Ceramics</a></li>
     <li><a href="<c:url value='/vase' />">Vase</a></li>
-    <li><a href="<c:url value='/about' />">About</a></li>
     <li><a href="<c:url value='/' />">Home</a></li>
+    <li><a href="<c:url value='/about' />">About</a></li>
 <%--    <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>--%>
     <li><a href="<c:url value='/cart'/>">Cart</a></li>
-</div>
+</ul>
 
- <div >
+ <div class="container" >
      <h2>장바구니</h2>
-     <form>
-         <table id="ShoppingList">
-             <th>
+
+     <form class="order-detailes">
+         <h3>주문자 ID :${selcet.id} </h3>
+         <table class="ShoppingList">
+             <c:forEach var="select" begin="1" end="${selcet.sellCount}">
                  <tr>
-             <td><input type="checkbox" name=""></td>
-             <td>상품정보</td>
-             <td>수량 </td>
-             <td>주문 금액</td>
-             </tr>
-             <tr>
-                 <td><input type="checkbox" name=""></td>
-                 <td id="listCnt">1</td>
-                 <td>1</td>
-                 <td>30,000</td>
-             </tr>
-             <tr>
-                 <td><input type="checkbox" name=""></td>
-                 <td id="listCnt1">2</td>
-                 <td>2</td>
-                 <td>50,000</td>
-             </tr>
-             </th>
+                     <td><input type="checkbox" name=""></td>
+                     <td>상품정보 : ${selcet.sellName} </td>
+                     <td>수량 : ${selcet.sellCount} </td>
+                     <td>주문 금액 : ${selcet.totalPrice} </td>
+                 </tr>
+
+                 <!-- 위의 형태에 따라 추가적인 아이템들을 표시할 수 있습니다 -->
+             </c:forEach>
+
+                 <div class="total-summary">
+                     <p>총 주문 상품 개수 : ${selcet.sellCount}</p>
+                     <p> 총 주문 가격:${selcet.totalPrice}</p>
+                 </div>
          </table>
-         <button>선택 상품 삭제</button>
+       <div class="buttons">
+         <button class="order-btn" formaction="<c:url value='/order/order'/> ">주문하기</button>
+         <button class="continue-shopping-btn" formaction="<c:url value='/ceramics'/>">계속 쇼핑하기</button>
 
-         <table id="totalShoppingList">
-             <th>
-                 <tr>
-             <td>총주문 상품 개수</td>
-             </tr>
-             <tr>
-                 <td>총주문 가격</td>
-             </tr>
-             </th>
-         </table>
-
-
-         <button formaction="<c:url value='/order/order'/> ">주문하기</button>
-         <button formaction="<c:url value='/ceramics'/>">계속 쇼핑하기</button>
-
+       </div>
 
      </form>
 

@@ -21,7 +21,7 @@ public class CartDaoImpl implements CartDao {
 
     @Override
     public int insertCart(CartDto cartDto) {
-        String sql = "INSERT INTO springbasic.cart values (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO cart values (?,?,?,?,?,?,?)";
         int result = 0;
 
         try
@@ -61,7 +61,7 @@ public class CartDaoImpl implements CartDao {
     @Override
     public int updateCart(CartDto cartDto) throws Exception {
         int rowCnt = 0;
-        String sql = "UPDATE springbaic.cart SET sellId=? ,sellCount =? ,sellName=? , sellPrice=? ,salePrice=? ,totalPrice=? WHERE id= ? ";
+        String sql = "UPDATE springbaic.cart SET sellId=? ,sellCount =? ,sellName=? , sellPrice=? ,salePrice=? ,totalPrice=? WHERE id=? ";
         try (
                 Connection conn = ds.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -77,21 +77,25 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
-    public List<CartDto> getCart(String memberId) throws Exception {
-        return null;
+    public List<CartDto> getCart(String id) throws Exception {
+      return null;
     }
 
     @Override
-    public CartDto selectCart(CartDto cartDto) throws Exception {
-        String sql = "SELECT FROM springbasic.cart WHERE id = ? ";
+    public CartDto selectCart(String id) throws Exception {
+        CartDto cartDto = null; // CartDto 객체를 null로 초기화
 
-        try
-                (Connection conn = ds.getConnection();
-                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                ) {
-            pstmt.setString(1, cartDto.getId());
+        String sql = "SELECT sellId, sellCount, sellName, sellPrice, totalPrice FROM springbasic.cart WHERE id = ?";
+
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, id); // 매개변수로 받은 id를 사용하여 PreparedStatement에 값 설정
+
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
+                    cartDto = new CartDto(); // 새로운 CartDto 객체 생성
+                    cartDto.setId(id); // CartDto 객체에 id 설정
                     cartDto.setSellId(rs.getInt("sellId"));
                     cartDto.setSellCount(rs.getInt("sellCount"));
                     cartDto.setSellName(rs.getString("sellName"));
@@ -100,6 +104,7 @@ public class CartDaoImpl implements CartDao {
                 }
             }
         }
+
         return cartDto;
     }
 

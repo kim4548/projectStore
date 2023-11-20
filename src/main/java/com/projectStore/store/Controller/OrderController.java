@@ -1,6 +1,7 @@
 package com.projectStore.store.Controller;
 
 
+import com.projectStore.store.dao.CartDao;
 import com.projectStore.store.dao.UserDao;
 import com.projectStore.store.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,18 @@ public class OrderController {
 // 로그인 했는지 물어보고 redirect--? /login/login
     @Autowired
 UserDao userDao;
-@Autowired
-User user;
+    @Autowired
+    CartDao cartDao;
+
 
 
 
     @RequestMapping("/order")
     public String order(HttpSession session, HttpServletRequest request , Model m) throws Exception {
 
-        m.addAttribute("user",userDao.selectUser(user.getId()));
+        System.out.println("orderController! ");
+        m.addAttribute("User",userDao.selectUser("kdst6156"));
+        m.addAttribute("Cart",cartDao.selectCart("kdst6156"));
         System.out.println("m---> " +m);
 
 

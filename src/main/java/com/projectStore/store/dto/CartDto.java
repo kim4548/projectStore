@@ -105,6 +105,13 @@ public class CartDto {
 
 
     public CartDto(){}
+
+    public CartDto(String id,String sellName ){
+        this.id = id;
+        this.sellName = sellName;
+
+
+    }
     public CartDto(String id, int sellId, int sellCount, String sellName, int sellPrice ,int totalPrice ) {
         this.id = id;
         this.sellId = sellId;

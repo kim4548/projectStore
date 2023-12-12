@@ -32,9 +32,11 @@ UserDao userDao;
     @RequestMapping("/order")
     public String order(HttpSession session, HttpServletRequest request , Model m) throws Exception {
 
+       String getId= (String)session.getAttribute("id");
+
         System.out.println("orderController! ");
-        m.addAttribute("User",userDao.selectUser("kdst6156"));
-        m.addAttribute("Cart",cartDao.selectCart("kdst6156"));
+        m.addAttribute("User",userDao.selectUser(getId));
+        m.addAttribute("Cart",cartDao.selectCart(getId));
         System.out.println("m---> " +m);
 
 

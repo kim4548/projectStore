@@ -23,8 +23,11 @@
 	
 	<context:component-scan base-package="com.projectStore.store" />
 
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	</beans:bean>
 
 
-	
-	
+
+
+
 </beans:beans>

@@ -49,6 +49,14 @@
             gap: 20px;
         }
 
+        .goto{
+            padding-top: 10px;
+        }
+
+        .endCheck{
+            padding-top: 10px;
+        }
+
         input[type="text"],
         input[type="email"],
         input[type="password"],
@@ -110,7 +118,7 @@
             height: 200px;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -187,8 +195,15 @@
 
             <div class="goto"  style="display: none;">
         <input  type="text"  class="goto1" value="홍길은행 123-12344-123456 홍길동">
+            <div class="copyNumberBtn">계좌번호 복사</div>
             </div>
+
+
+       <div class="endCheck">
         <labal>현금 영수증 신청</labal><input type="checkbox" name="현금영수증 신청" >
+       </div>
+
+
         </div>
 
 
@@ -239,8 +254,31 @@
            }else {
                $('.goto').hide()
            }
+
+
        });
    })
+
+   $(document).ready(function () {
+       $('.copyNumberBtn').click(function () {
+           const inputValue = $('.goto1').val();
+           const numberOnly = inputValue.match(/\d+/g); // 숫자만 추출
+
+           if (numberOnly) {
+               const numbers = numberOnly.join(''); // 배열을 하나의 문자열로 결합
+               navigator.clipboard.writeText(numbers)
+                   .then(() => {
+                       alert("계좌 번호 가 복사되었습니다: " + numbers);
+                   })
+                   .catch(err => {
+                       console.error('복사 실패: ', err);
+                       alert("숫자를 복사하는 도중에 문제가 발생했습니다.");
+                   });
+           } else {
+               alert("숫자가 없습니다.");
+           }
+       });
+   });
 </script>
 </body>
 </html>

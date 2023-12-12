@@ -81,19 +81,41 @@
 
     /* 다른 스타일들은 유지하고 위의 부분만 변경 */
 
+    .navbar {
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
 
+    .navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .navbar a:hover {
+        background: #ddd;
+        color: black;
+    }
 </style>
 <body>
 
-<div id="menu">
-    <ul class="menu">
-    <li><a href="<c:url value='/ceramics'/>">Ceramics</a></li>
-    <li><a href="<c:url value='/vase' />">Vase</a></li>
-    <li><a href="<c:url value='/about' />">About</a></li>
-    <li><a href="<c:url value='/' />">Home</a></li>
-    <li><a href="<c:url value='/login/login'/>">Login</a></li>
-    <li><a href="<c:url value='/cart'/>">Cart</a></li>
-    </ul>
+<div class="navbar">
+
+    <a href="<c:url value='/ceramics'/>">Ceramics</a>
+    <a href="<c:url value='/about' />">About</a>
+    <a href="<c:url value='/' />">Home</a>
+    <a href="<c:url value='/login/login'/>">Login</a>
+    <a href="<c:url value='/cart'/>">Cart</a>
+
 </div>
 
 <div id ="registerForm" class="container">

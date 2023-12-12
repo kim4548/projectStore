@@ -12,7 +12,6 @@
 
 <div id="menu">
     <li><a href="<c:url value='/ceramics'/>">Ceramics</a></li>
-    <li><a href="<c:url value='/vase' />">Vase</a></li>
     <li><a href="<c:url value='/about' />">About</a></li>
     <li><a href="<c:url value='/' />">Home</a></li>
     <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>

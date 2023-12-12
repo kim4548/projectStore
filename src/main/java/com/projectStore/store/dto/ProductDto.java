@@ -1,11 +1,16 @@
 package com.projectStore.store.dto;
 
 
+import com.projectStore.store.domain.AttachImageVO;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 import java.util.List;
 
+
+@Component
 // 상품 Dto
-public class SellDto {
+public class ProductDto {
     private int sellId;
     private String sellName;
 
@@ -18,15 +23,17 @@ public class SellDto {
     private String sellIntro;
 
     //상품 목차
-    private String sellContents;
+
 
     //등록 날짜
     private Date sell_regDate;
 
     private Date sell_updateDate;
 
+
+
     //이미지 정보
-    private List<SellImageDto> imageDtoList;
+    private List<AttachImageVO> imageDtoList;
 
     public int getSellId() {
         return sellId;
@@ -68,13 +75,7 @@ public class SellDto {
         this.sellIntro = sellIntro;
     }
 
-    public String getSellContents() {
-        return sellContents;
-    }
 
-    public void setSellContents(String sellContents) {
-        this.sellContents = sellContents;
-    }
 
     public Date getSell_regDate() {
         return sell_regDate;
@@ -92,25 +93,36 @@ public class SellDto {
         this.sell_updateDate = sell_updateDate;
     }
 
-    public List<SellImageDto> getImageDtoList() {
+    public List<AttachImageVO> getImageDtoList() {
         return imageDtoList;
     }
 
-    public void setImageDtoList(List<SellImageDto> imageDtoList) {
+    public void setImageDtoList(List<AttachImageVO> imageDtoList) {
         this.imageDtoList = imageDtoList;
     }
 
-    public SellDto(){}
+    public ProductDto(){}
 
-    public SellDto(int sellId, String sellName, int sellPrice, int sellCount, String sellIntro, String sellContents, Date sell_regDate, Date sell_updateDate, List<SellImageDto> imageDtoList) {
+    public ProductDto(int sellId, String sellName, int sellPrice, int sellCount, String sellIntro, Date sell_regDate, Date sell_updateDate, List<AttachImageVO> imageDtoList) {
         this.sellId = sellId;
         this.sellName = sellName;
         this.sellPrice = sellPrice;
         this.sellCount = sellCount;
         this.sellIntro = sellIntro;
-        this.sellContents = sellContents;
         this.sell_regDate = sell_regDate;
         this.sell_updateDate = sell_updateDate;
         this.imageDtoList = imageDtoList;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDto{" +
+                "sellId=" + sellId +
+                ", sellName='" + sellName + '\'' +
+                ", sellPrice=" + sellPrice +
+                ", sellCount=" + sellCount +
+                ", sellIntro='" + sellIntro + '\'' +
+                ", imageDtoList=" + imageDtoList +
+                '}';
     }
 }

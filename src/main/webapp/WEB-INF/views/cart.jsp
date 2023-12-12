@@ -25,6 +25,7 @@
         margin: 0;
         padding: 0;
         background-color: #f5f5f5;
+        margin-top: 100px;
     }
 
     .container {
@@ -100,7 +101,31 @@
         background-color: #27ae60;
         color: #fff;
     }
+    .navbar {
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        margin-top: 0px;
+    }
 
+    .navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .navbar a:hover {
+        background: #ddd;
+        color: black;
+    }
 
 </style>
 
@@ -108,13 +133,12 @@
 </head>
 
 <body>
-<ul class="menu">
-    <li><a href="<c:url value='/ceramics'/>">Ceramics</a></li>
-    <li><a href="<c:url value='/vase' />">Vase</a></li>
-    <li><a href="<c:url value='/' />">Home</a></li>
-    <li><a href="<c:url value='/about' />">About</a></li>
-<%--    <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>--%>
-    <li><a href="<c:url value='/cart'/>">Cart</a></li>
+<ul class="navbar">
+    <a href="<c:url value='/ceramics'/>">Ceramics</a>
+    <a href="<c:url value='/' />">Home</a>
+    <a href="<c:url value='/board/list' />">Board</a>
+<%--<li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>--%>
+    <a href="<c:url value='/cart'/>">Cart</a>
 </ul>
 
  <div class="container" >
@@ -123,12 +147,12 @@
      <form class="order-detailes">
          <h3>주문자 ID :${selcet.id} </h3>
          <table class="ShoppingList">
-             <c:forEach var="select" begin="1" end="${selcet.sellCount}">
+             <c:forEach var="select" items="${selcetList}">
                  <tr>
-                     <td><input type="checkbox" name=""></td>
-                     <td>상품정보 : ${selcet.sellName} </td>
-                     <td>수량 : ${selcet.sellCount} </td>
-                     <td>주문 금액 : ${selcet.totalPrice} </td>
+                     <td><input type="checkbox" name="selectedItems" value="${select.itemId}"></td>
+                     <td>상품정보 : ${select.sellName} </td>
+                     <td>수량 : ${select.sellCount} </td>
+                     <td>주문 금액 : ${select.totalPrice} </td>
                  </tr>
 
                  <!-- 위의 형태에 따라 추가적인 아이템들을 표시할 수 있습니다 -->

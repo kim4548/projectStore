@@ -27,12 +27,7 @@ public class RegisterController {
 
     @PostMapping("/save")
     public String save(@Valid User user , BindingResult result , Model m,String id) throws Exception {
-
-
-
         userDao.insertUser(user);
-
-
         if (userDao.idCheck(user.getId()) == 1) {
             return "redirect:/"; //아이디가 중복 1
         } else {

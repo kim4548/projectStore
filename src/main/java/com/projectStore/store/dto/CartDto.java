@@ -1,5 +1,7 @@
 package com.projectStore.store.dto;
 
+import com.projectStore.store.domain.AttachImageVO;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +34,7 @@ public class CartDto {
   private int cartId ;
 
   //상품 이미지
-    private List<SellImageDto> sellImageDTOList;
+    private List<AttachImageVO> sellImageDTOList;
 
     public int getCartId() {
         return cartId;
@@ -50,11 +52,11 @@ public class CartDto {
         this.id = id;
     }
 
-    public List<SellImageDto> getSellImageDTOList() {
+    public List<AttachImageVO> getSellImageDTOList() {
         return sellImageDTOList;
     }
 
-    public void setSellImageDTOList(List<SellImageDto> sellImageDTOList) {
+    public void setSellImageDTOList(List<AttachImageVO> sellImageDTOList) {
         this.sellImageDTOList = sellImageDTOList;
     }
 
@@ -109,7 +111,7 @@ public class CartDto {
     public CartDto(String id,String sellName ){
         this.id = id;
         this.sellName = sellName;
-
+        this.totalPrice=this.sellPrice*this.sellCount;
 
     }
     public CartDto(String id, int sellId, int sellCount, String sellName, int sellPrice ,int totalPrice ) {

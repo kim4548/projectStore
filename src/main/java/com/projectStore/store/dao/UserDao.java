@@ -1,9 +1,6 @@
 package com.projectStore.store.dao;
 import com.projectStore.store.domain.*;
 
-import org.springframework.stereotype.Service;
-
-
 
 public interface UserDao {
     User selectUser(String id) throws Exception;

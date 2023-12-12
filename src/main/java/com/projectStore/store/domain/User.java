@@ -6,13 +6,16 @@ import java.util.Objects;
 
 @Component
 public class User {
-    String id;
-    String pwd;
-    String email;
-    String name;
-    String PhoneNum;
-    String ssn;
+   private String id;
+   private String pwd;
+   private String email;
+   private String name;
+   private String PhoneNum;
+   private String ssn;
 
+   private String googleid;
+   private String naverid;
+   private String nickname;
     public  User(){}
     public User(String id, String pwd, String email, String name, String phoneNum, String ssn) {
         this.id = id;
@@ -21,6 +24,30 @@ public class User {
         this.name = name;
         this.PhoneNum = phoneNum;
         this.ssn = ssn;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getGoogleid() {
+        return googleid;
+    }
+
+    public void setGoogleid(String googleid) {
+        this.googleid = googleid;
+    }
+
+    public String getNaverid() {
+        return naverid;
+    }
+
+    public void setNaverid(String naverid) {
+        this.naverid = naverid;
     }
 
     public String getId() {
